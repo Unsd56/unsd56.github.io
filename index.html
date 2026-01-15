@@ -1,1 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Game Hub</title>
 
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #111;
+      color: white;
+      overflow: hidden;
+    }
+
+    header {
+      background: #000;
+      padding: 12px;
+      text-align: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    #menu {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+
+    .game {
+      background: #1e1e1e;
+      border-radius: 10px;
+      padding: 15px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+    }
+
+    .game:hover {
+      transform: scale(1.05);
+      background: #2a2a2a;
+    }
+
+    #player {
+      display: none;
+      height: 100vh;
+      width: 100vw;
+      flex-direction: column;
+    }
+
+    iframe {
+      flex: 1;
+      border: none;
+      background: black;
+    }
+
+    button {
+      background: #222;
+      color: white;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #444;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>Game Hub</header>
+
+<div id="menu">
+  <div class="game" onclick="playGame('https://itch.io/embed-upload/834224?color=333333')">
+    Cookie-Clicker-Style Game
+  </div>
+
+  <div class="game" onclick="playGame('https://itch.io/embed/553855')">
+    Idle Clicker Game
+  </div>
+</div>
+
+<div id="player">
+  <button onclick="goBack()">⬅ Back to Games</button>
+  <iframe id="gameFrame" allowfullscreen></iframe>
+</div>
+
+<script>
+  function playGame(url) {
+    document.getElementById("menu").style.display = "none";
+    document.getElementById("player").style.display = "flex";
+    document.getElementById("gameFrame").src = url;
+  }
+
+  function goBack() {
+    document.getElementById("gameFrame").src = "";
+    document.getElementById("player").style.display = "none";
+    document.getElementById("menu").style.display = "grid";
+  }
+</script>
+
+</body>
+</html>
